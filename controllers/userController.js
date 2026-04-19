@@ -1,7 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 
-// GET / — ambil semua user
 const getAllUsers = async (req, res) => {
     try {
         const users = await User.find().select('-password');
@@ -11,7 +10,6 @@ const getAllUsers = async (req, res) => {
     }
 };
 
-// GET /:id — ambil user by ID
 const getUserById = async (req, res) => {
     try {
         const user = await User.findById(req.params.id).select('-password');
@@ -22,7 +20,6 @@ const getUserById = async (req, res) => {
     }
 };
 
-// POST / — tambah user baru
 const createUser = async (req, res) => {
     try {
         const { email, username, password, is_active } = req.body;
@@ -36,7 +33,6 @@ const createUser = async (req, res) => {
     }
 };
 
-// PUT /:id — update user
 const updateUser = async (req, res) => {
     try {
         const { password, ...updateData } = req.body;
@@ -52,7 +48,6 @@ const updateUser = async (req, res) => {
     }
 };
 
-// DELETE /:id — hapus user
 const deleteUser = async (req, res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.id);
